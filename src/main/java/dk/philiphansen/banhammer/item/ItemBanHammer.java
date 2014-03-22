@@ -17,31 +17,19 @@
  * along with BanHammer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package dk.philiphansen.banhammer;
+package dk.philiphansen.banhammer.item;
 
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import dk.philiphansen.banhammer.item.ModItems;
+import dk.philiphansen.banhammer.reference.ItemInfo;
 import dk.philiphansen.banhammer.reference.ModInfo;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 
-@Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION)
-public class BanHammer {
+public class ItemBanHammer extends Item {
 
-	@Instance(ModInfo.ID)
-	public static BanHammer instance;
-
-	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
-		ModItems.init();
+	public ItemBanHammer() {
+		super();
+		setUnlocalizedName(ItemInfo.BAN_HAMMER_NAME);
+		setCreativeTab(CreativeTabs.tabTools);
+		setTextureName(ModInfo.ID + ":" + ItemInfo.BAN_HAMMER_TEXTURE);
 	}
-
-	@EventHandler
-	public void init(FMLInitializationEvent event) {}
-
-	@EventHandler
-	public void postInit(FMLPostInitializationEvent event) {}
 }
