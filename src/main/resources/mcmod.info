@@ -1,0 +1,16 @@
+[
+{
+  "modid": "banhammer",
+  "name": "Ban Hammer",
+  "description": "Need to ban? Do it in style, with a hammer!",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "github.com/Hanse00/BanHammer",
+  "updateUrl": "",
+  "authorList": ["Philip \"Hanse00\" Hansen"],
+  "credits": "Hammers all over the world",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
