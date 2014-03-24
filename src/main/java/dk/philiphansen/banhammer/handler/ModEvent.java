@@ -21,35 +21,35 @@ package dk.philiphansen.banhammer.handler;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import dk.philiphansen.banhammer.BanHammer;
+import dk.philiphansen.banhammer.command.CommandHammerBan;
 import dk.philiphansen.banhammer.item.ModItems;
-import net.minecraft.command.CommandServerKick;
-import net.minecraft.command.server.CommandBanPlayer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
-import org.lwjgl.Sys;
 
-public class ModEventHandler {
+public class ModEvent {
 
 	@SubscribeEvent
 	public void EntityInteract(EntityInteractEvent event) {
-		Entity target = event.target;
-		EntityPlayer player = event.entityPlayer;
+		if (!event.entity.worldObj.isRemote) {
+			Entity target = event.target;
+			EntityPlayer player = event.entityPlayer;
 
-		BanHammer.logger.info(player.toString());
-		BanHammer.logger.info(target.toString());
+			BanHammer.logger.info(player.toString());
+			BanHammer.logger.info(target.toString());
 
-		if ((player.getCurrentEquippedItem() != null) && (player.getCurrentEquippedItem().getItem() != null)) {
-			if (player.getCurrentEquippedItem().getItem() == ModItems.itemBanHammer) {
-				BanHammer.logger.info("Used ban hammer!");
-				if ((target != null) && (target instanceof EntityPlayer)) {
-					EntityPlayer targetPlayer = (EntityPlayer) target;
-					BanHammer.logger.info("Hammer was used on player");
+			if ((player.getCurrentEquippedItem() != null) && (player.getCurrentEquippedItem().getItem() != null)) {
+				if (player.getCurrentEquippedItem().getItem() == ModItems.itemBanHammer) {
+					BanHammer.logger.info("Used ban hammer!");
+					if ((target != null) && (target instanceof EntityPlayer)) {
+						EntityPlayer targetPlayer = (EntityPlayer) target;
+						BanHammer.logger.info("Hammer was used on player");
 
-					CommandBanPlayer banPlayer = new CommandBanPlayer();
-					if (banPlayer.canCommandSenderUseCommand(player)) {
-						BanHammer.logger.info("User is allowed to kick");
-						banPlayer.processCommand(player, new String[]{targetPlayer.getDisplayName()});
+						CommandHammerBan banCommand = new CommandHammerBan();
+						if (banCommand.canCommandSenderUseCommand(player)) {
+							BanHammer.logger.info("User is allowed to kick");
+							banCommand.processCommand(player, new String[]{targetPlayer.getDisplayName()});
+						}
 					}
 				}
 			}

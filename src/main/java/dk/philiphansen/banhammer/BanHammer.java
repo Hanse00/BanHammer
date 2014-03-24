@@ -25,7 +25,7 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import dk.philiphansen.banhammer.handler.ModEventHandler;
+import dk.philiphansen.banhammer.handler.ModEvent;
 import dk.philiphansen.banhammer.item.ModItems;
 import dk.philiphansen.banhammer.reference.ModInfo;
 import net.minecraftforge.common.MinecraftForge;
@@ -46,10 +46,11 @@ public class BanHammer {
 	}
 
 	@EventHandler
-	public void init(FMLInitializationEvent event) {}
+	public void init(FMLInitializationEvent event) {
+	}
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-		MinecraftForge.EVENT_BUS.register(new ModEventHandler());
+		MinecraftForge.EVENT_BUS.register(new ModEvent());
 	}
 }
