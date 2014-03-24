@@ -25,11 +25,17 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import dk.philiphansen.banhammer.handler.ModEventHandler;
 import dk.philiphansen.banhammer.item.ModItems;
 import dk.philiphansen.banhammer.reference.ModInfo;
+import net.minecraftforge.common.MinecraftForge;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION)
 public class BanHammer {
+
+	public static final Logger logger = LogManager.getLogger(ModInfo.NAME);
 
 	@Instance(ModInfo.ID)
 	public static BanHammer instance;
@@ -43,5 +49,7 @@ public class BanHammer {
 	public void init(FMLInitializationEvent event) {}
 
 	@EventHandler
-	public void postInit(FMLPostInitializationEvent event) {}
+	public void postInit(FMLPostInitializationEvent event) {
+		MinecraftForge.EVENT_BUS.register(new ModEventHandler());
+	}
 }
