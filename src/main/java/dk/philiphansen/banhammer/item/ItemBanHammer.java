@@ -19,10 +19,15 @@
 
 package dk.philiphansen.banhammer.item;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import dk.philiphansen.banhammer.reference.ItemInfo;
 import dk.philiphansen.banhammer.reference.ModInfo;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class ItemBanHammer extends Item {
 
@@ -31,5 +36,16 @@ public class ItemBanHammer extends Item {
 		setUnlocalizedName(ItemInfo.BAN_HAMMER_NAME);
 		setCreativeTab(CreativeTabs.tabTools);
 		setTextureName(ModInfo.ID + ":" + ItemInfo.BAN_HAMMER_TEXTURE);
+	}
+
+	@SideOnly(Side.CLIENT)
+	public boolean isFull3D() {
+		return true;
+	}
+
+	@Override
+	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer entityPlayer) {
+		entityPlayer.swingItem();
+		return itemStack;
 	}
 }
