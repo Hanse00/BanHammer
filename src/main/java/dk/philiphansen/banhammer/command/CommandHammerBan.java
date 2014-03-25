@@ -23,11 +23,12 @@ import dk.philiphansen.banhammer.BanHammer;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
+import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.BanEntry;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.StatCollector;
+import net.minecraft.world.World;
 
 import java.util.List;
 
@@ -63,7 +64,13 @@ public class CommandHammerBan extends CommandBase {
 			MinecraftServer.getServer().getConfigurationManager().getBannedPlayers().put(banEntry);
 
 			if (entityPlayerMP != null) {
-				entityPlayerMP.attackEntityFrom(DamageSource.outOfWorld, Float.MAX_VALUE);
+				World world = entityPlayerMP.getEntityWorld();
+				Double strikeX = entityPlayerMP.posX;
+				Double strikeY = entityPlayerMP.posY;
+				Double strikeZ = entityPlayerMP.posZ;
+
+				world.addWeatherEffect(new EntityLightningBolt(world, strikeX, strikeY, strikeZ));
+
 				entityPlayerMP.playerNetServerHandler.kickPlayerFromServer(StatCollector.translateToLocal("commands" +
 						".hammerBan.message"));
 			}
