@@ -38,6 +38,7 @@ public class ItemBanHammer extends Item {
 		setTextureName(ModInfo.ID + ":" + ItemInfo.BAN_HAMMER_TEXTURE);
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean isFull3D() {
 		return true;
@@ -45,7 +46,13 @@ public class ItemBanHammer extends Item {
 
 	@Override
 	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer entityPlayer) {
+		entityPlayer.setItemInUse(itemStack, getMaxItemUseDuration(itemStack));
 		entityPlayer.swingItem();
 		return itemStack;
+	}
+
+	@Override
+	public int getMaxItemUseDuration(ItemStack par1ItemStack) {
+		return 72000;
 	}
 }
