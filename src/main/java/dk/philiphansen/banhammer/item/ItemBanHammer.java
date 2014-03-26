@@ -30,7 +30,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class ItemBanHammer extends Item {
-
 	public ItemBanHammer() {
 		super();
 		setUnlocalizedName(ItemInfo.BAN_HAMMER_NAME);

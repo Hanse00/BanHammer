@@ -29,14 +29,9 @@ import dk.philiphansen.banhammer.handler.ModEvent;
 import dk.philiphansen.banhammer.item.ModItems;
 import dk.philiphansen.banhammer.reference.ModInfo;
 import net.minecraftforge.common.MinecraftForge;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 @Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION)
 public class BanHammer {
-
-	public static final Logger logger = LogManager.getLogger(ModInfo.NAME);
-
 	@Instance(ModInfo.ID)
 	public static BanHammer instance;
 

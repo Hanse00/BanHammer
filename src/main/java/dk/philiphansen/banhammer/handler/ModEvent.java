@@ -20,7 +20,6 @@
 package dk.philiphansen.banhammer.handler;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import dk.philiphansen.banhammer.BanHammer;
 import dk.philiphansen.banhammer.command.CommandHammerBan;
 import dk.philiphansen.banhammer.item.ModItems;
 import net.minecraft.entity.Entity;
@@ -28,26 +27,19 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 
 public class ModEvent {
-
 	@SubscribeEvent
 	public void EntityInteract(EntityInteractEvent event) {
 		if (!event.entity.worldObj.isRemote) {
 			Entity target = event.target;
 			EntityPlayer player = event.entityPlayer;
 
-			BanHammer.logger.info(player.toString());
-			BanHammer.logger.info(target.toString());
-
 			if ((player.getCurrentEquippedItem() != null) && (player.getCurrentEquippedItem().getItem() != null)) {
 				if (player.getCurrentEquippedItem().getItem() == ModItems.itemBanHammer) {
-					BanHammer.logger.info("Used ban hammer!");
 					if ((target != null) && (target instanceof EntityPlayer)) {
 						EntityPlayer targetPlayer = (EntityPlayer) target;
-						BanHammer.logger.info("Hammer was used on player");
 
 						CommandHammerBan banCommand = new CommandHammerBan();
 						if (banCommand.canCommandSenderUseCommand(player)) {
-							BanHammer.logger.info("User is allowed to kick");
 							banCommand.processCommand(player, new String[]{targetPlayer.getDisplayName()});
 						}
 					}

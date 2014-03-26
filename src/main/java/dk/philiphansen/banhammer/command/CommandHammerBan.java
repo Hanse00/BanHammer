@@ -19,7 +19,6 @@
 
 package dk.philiphansen.banhammer.command;
 
-import dk.philiphansen.banhammer.BanHammer;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
@@ -51,9 +50,6 @@ public class CommandHammerBan extends CommandBase {
 	}
 
 	public void processCommand(ICommandSender commandSender, String[] commandArgs) {
-		if (commandArgs != null) {
-			BanHammer.logger.info(commandArgs.toString());
-		}
 
 		if (commandArgs.length >= 1 && commandArgs[0].length() > 0) {
 			EntityPlayerMP entityPlayerMP = MinecraftServer.getServer().getConfigurationManager().getPlayerForUsername
