@@ -1,4 +1,5 @@
 item.banHammer.name=Ban Hammer
-commands.hammerBan.usage=/Right click a player with the ban hammer
+commands.hammerBan.usage=Right click a player with the ban hammer
 commands.hammerBan.success=%s was hammered
 commands.hammerBan.message=You've been hammered, punk
+commands.hammerBan.reason=The hammer fell upon you
