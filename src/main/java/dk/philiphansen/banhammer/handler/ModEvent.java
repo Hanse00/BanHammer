@@ -23,7 +23,10 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import dk.philiphansen.banhammer.command.CommandHammerBan;
 import dk.philiphansen.banhammer.item.ModItems;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 
 public class ModEvent {
@@ -35,12 +38,21 @@ public class ModEvent {
 
 			if ((player.getCurrentEquippedItem() != null) && (player.getCurrentEquippedItem().getItem() != null)) {
 				if (player.getCurrentEquippedItem().getItem() == ModItems.itemBanHammer) {
-					if ((target != null) && (target instanceof EntityPlayer)) {
-						EntityPlayer targetPlayer = (EntityPlayer) target;
+					if (target != null) {
+						if (target instanceof EntityPlayer) {
+							EntityPlayer targetPlayer = (EntityPlayer) target;
 
-						CommandHammerBan banCommand = new CommandHammerBan();
-						if (banCommand.canCommandSenderUseCommand(player)) {
-							banCommand.processCommand(player, new String[]{targetPlayer.getDisplayName()});
+							CommandHammerBan banCommand = new CommandHammerBan();
+							if (banCommand.canCommandSenderUseCommand(player)) {
+								banCommand.processCommand(player, new String[]{targetPlayer.getDisplayName()});
+							}
+						} else if (target instanceof EntityLiving) {
+							World world = target.worldObj;
+							Double strikeX = target.posX;
+							Double strikeY = target.posY;
+							Double strikeZ = target.posZ;
+
+							world.addWeatherEffect(new EntityLightningBolt(world, strikeX, strikeY, strikeZ));
 						}
 					}
 				}

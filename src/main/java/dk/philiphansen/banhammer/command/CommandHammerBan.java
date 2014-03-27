@@ -60,7 +60,7 @@ public class CommandHammerBan extends CommandBase {
 			MinecraftServer.getServer().getConfigurationManager().getBannedPlayers().put(banEntry);
 
 			if (entityPlayerMP != null) {
-				World world = entityPlayerMP.getEntityWorld();
+				World world = entityPlayerMP.worldObj;
 				Double strikeX = entityPlayerMP.posX;
 				Double strikeY = entityPlayerMP.posY;
 				Double strikeZ = entityPlayerMP.posZ;
