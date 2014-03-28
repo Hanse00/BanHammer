@@ -83,4 +83,9 @@ public class CommandHammerBan extends CommandBase {
 		return par2ArrayOfStr.length >= 1 ? getListOfStringsMatchingLastWord(par2ArrayOfStr,
 				MinecraftServer.getServer().getAllUsernames()) : null;
 	}
+
+	@Override
+	public int compareTo(Object o) {
+		return 0;
+	}
 }

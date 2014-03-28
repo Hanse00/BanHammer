@@ -25,6 +25,7 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import dk.philiphansen.banhammer.handler.ModConfig;
 import dk.philiphansen.banhammer.handler.ModEvent;
 import dk.philiphansen.banhammer.item.ModItems;
 import dk.philiphansen.banhammer.reference.ModInfo;
@@ -37,6 +38,8 @@ public class BanHammer {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+		ModConfig.init(event.getSuggestedConfigurationFile());
+
 		ModItems.init();
 	}
 

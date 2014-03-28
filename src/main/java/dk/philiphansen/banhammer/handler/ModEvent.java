@@ -19,7 +19,6 @@
 
 package dk.philiphansen.banhammer.handler;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import dk.philiphansen.banhammer.command.CommandHammerBan;
 import dk.philiphansen.banhammer.item.ModItems;
 import net.minecraft.entity.Entity;
@@ -27,10 +26,11 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 
 public class ModEvent {
-	@SubscribeEvent
+	@ForgeSubscribe
 	public void EntityInteract(EntityInteractEvent event) {
 		if (!event.entity.worldObj.isRemote) {
 			Entity target = event.target;

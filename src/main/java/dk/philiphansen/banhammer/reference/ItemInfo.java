@@ -22,4 +22,7 @@ package dk.philiphansen.banhammer.reference;
 public class ItemInfo {
 	public static final String BAN_HAMMER_NAME = "banHammer";
 	public static final String BAN_HAMMER_TEXTURE = "ban_hammer";
+
+	public static int BAN_HAMMER_ITEM_ID;
+	public static final int BAN_HAMMER_ITEM_ID_DEFAULT = 9001;
 }

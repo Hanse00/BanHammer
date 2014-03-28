@@ -17,17 +17,21 @@
  * along with BanHammer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package dk.philiphansen.banhammer.item;
+package dk.philiphansen.banhammer.handler;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import dk.philiphansen.banhammer.reference.ItemInfo;
+import net.minecraftforge.common.Configuration;
 
-public class ModItems {
-	public static ItemBanHammer itemBanHammer;
+import java.io.File;
 
-	public static void init() {
-		itemBanHammer = new ItemBanHammer(ItemInfo.BAN_HAMMER_ITEM_ID);
+public class ModConfig {
+	public static void init(File file) {
+		Configuration config = new Configuration(file);
 
-		GameRegistry.registerItem(itemBanHammer, ItemInfo.BAN_HAMMER_NAME);
+		config.load();
+
+		ItemInfo.BAN_HAMMER_ITEM_ID = config.get("Item id", "Ban Hammer id", ItemInfo.BAN_HAMMER_ITEM_ID_DEFAULT).getInt();
+
+		config.save();
 	}
 }

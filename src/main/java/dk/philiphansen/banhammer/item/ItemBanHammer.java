@@ -30,8 +30,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class ItemBanHammer extends Item {
-	public ItemBanHammer() {
-		super();
+	public ItemBanHammer(int id) {
+		super(id);
 		setUnlocalizedName(ItemInfo.BAN_HAMMER_NAME);
 		setCreativeTab(CreativeTabs.tabTools);
 		setTextureName(ModInfo.ID + ":" + ItemInfo.BAN_HAMMER_TEXTURE);
